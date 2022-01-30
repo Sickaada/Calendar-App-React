@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import CardComponent from '../cards';
 import bg from '../../bg.jpg';
+import { REACT_APP_CLIENT_ID, REACT_APP_API_KEY } from '../../config';
 
 function ShowEvents() {
   const { gapi } = window;
-  const clientId = '65367275187-2rtntb1b7th5nm03c83a2hgio2dt0oom.apps.googleusercontent.com';
-  const apiKey = 'AIzaSyAoek7oNspIoqyyRTv1GQBrX7zGrTfKaWo';
+
   const discoveryDocs = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
   const Scopes = 'https://www.googleapis.com/auth/calendar.events';
 
   const [events, setEvents] = useState([]);
   const handleClick = () => {
+    const clientId = REACT_APP_CLIENT_ID;
+    const apiKey = REACT_APP_API_KEY;
     gapi.load('client:auth2', () => {
-      console.log('loaded');
-
       gapi.client.init({
         apiKey,
         clientId,
@@ -21,7 +21,7 @@ function ShowEvents() {
         scope: Scopes,
       });
 
-      gapi.client.load('calendar', 'v3', () => console.log('asd'));
+      gapi.client.load('calendar', 'v3', () => console.log('Loading!'));
       gapi.auth2.getAuthInstance().signIn()
 
         .then(() => {

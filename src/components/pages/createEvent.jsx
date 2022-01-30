@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import AddOutlined from '@material-ui/icons/AddOutlined';
 import bg from '../../dark-bg.jpg';
+import { REACT_APP_CLIENT_ID, REACT_APP_API_KEY } from '../../config';
 
 function CreateEvent() {
   const [summary, setSummary] = useState('');
@@ -15,25 +16,22 @@ function CreateEvent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(summary, description, start, end);
   };
   const { gapi } = window;
-  const clientId = '65367275187-2rtntb1b7th5nm03c83a2hgio2dt0oom.apps.googleusercontent.com';
-  const apiKey = 'AIzaSyAoek7oNspIoqyyRTv1GQBrX7zGrTfKaWo';
   const discoveryDocs = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
   const Scopes = 'https://www.googleapis.com/auth/calendar.events';
 
   const addEvent = () => {
+    const clientId = REACT_APP_CLIENT_ID;
+    const apiKey = REACT_APP_API_KEY;
     gapi.load('client:auth2', () => {
-      console.log('loaded client');
-
       gapi.client.init({
         apiKey,
         clientId,
         discoveryDocs,
         scope: Scopes,
       });
-      gapi.client.load('calendar', 'v3', () => console.log('bam!'));
+      gapi.client.load('calendar', 'v3', () => console.log('Loading!'));
 
       gapi.auth2.getAuthInstance().signIn()
         .then(() => {
@@ -58,7 +56,6 @@ function CreateEvent() {
           });
 
           request.execute((eventa) => {
-            console.log(eventa);
             window.open(eventa.htmlLink);
           });
         });

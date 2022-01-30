@@ -4,6 +4,7 @@ import { GoogleLogout } from 'react-google-login';
 import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { REACT_APP_CLIENT_ID } from '../config';
 
 const useStyles = makeStyles({
   btn: {
@@ -11,12 +12,11 @@ const useStyles = makeStyles({
   },
 });
 
-const clientID = '679042011354-2f2upoivo3q9ko9mlv3op4is64ikcjvv.apps.googleusercontent.com';
+const clientID = REACT_APP_CLIENT_ID;
 
 function Logout({ setisLoggedIn }) {
   const classes = useStyles();
   const onSuccess = () => {
-    console.log('Logged out!');
     localStorage.removeItem('user');
     setisLoggedIn(false);
   };

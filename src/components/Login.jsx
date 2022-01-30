@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { REACT_APP_CLIENT_ID } from '../config';
 // import { refreshTokenSetup } from '../utils/refreshToken';
 
 const useStyles = makeStyles({
@@ -12,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const clientID = '65367275187-2rtntb1b7th5nm03c83a2hgio2dt0oom.apps.googleusercontent.com';
+const clientID = REACT_APP_CLIENT_ID;
 
 function Login({ setisLoggedIn }) {
   const classes = useStyles();

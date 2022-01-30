@@ -10,7 +10,7 @@ function Landing({ setisLoggedIn }) {
 
       <Grid container style={{ minHeight: '100vh', backgroundSize: 'cover', backgroundImage: `url(${bg})` }}>
 
-        <Grid container item xs={12} sm={6} alignItems="center" direction="column" justify="space-between" style={{ padding: '10', height: '100vh' }}>
+        <Grid container item xs={12} sm={6} alignItems="center" direction="column" justifyContent="space-between" style={{ padding: '10', height: '100vh' }}>
 
           <div style={{
             display: 'flex', flexDirection: 'column', maxWidth: '800', minWidth: '300', paddingTop: '25vh',
