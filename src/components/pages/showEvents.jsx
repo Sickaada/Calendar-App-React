@@ -1,5 +1,6 @@
-import React from 'react';
-import { Button } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import CardComponent from '../cards';
+import bg from '../../bg.jpg';
 
 function ShowEvents() {
   const { gapi } = window;
@@ -8,6 +9,7 @@ function ShowEvents() {
   const discoveryDocs = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
   const Scopes = 'https://www.googleapis.com/auth/calendar.events';
 
+  const [events, setEvents] = useState([]);
   const handleClick = () => {
     gapi.load('client:auth2', () => {
       console.log('loaded');
@@ -32,20 +34,31 @@ function ShowEvents() {
             maxResults: 100,
             orderBy: 'startTime',
           }).then((response) => {
-            const events = response.result;
-            console.log('Events: ', events);
+            const eventP = response.result.items;
+
+            setEvents(eventP.map((event) => ({
+              start: event.start,
+              end: event.end,
+              description: event.description,
+            })));
           });
         });
     });
   };
-
+  useEffect(() => {
+    handleClick();
+  }, []);
   return (
     <>
-      <div>
-        <Button onClick={handleClick} style={{ color: 'red', backgroundColor: 'blue' }}>Show events</Button>
+      <div style={{
+        backgroundImage: `url(${bg})`, minHeight: '100vh', backgroundSize: 'cover', paddingTop: '4rem', paddingBottom: '4rem', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed',
+      }}
+      >
+        <CardComponent events={events} />
       </div>
       <br />
     </>
+
   );
 }
 

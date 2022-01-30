@@ -1,6 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import {
+  Grid, Paper, Button, Avatar,
+} from '@material-ui/core';
+import AddOutlined from '@material-ui/icons/AddOutlined';
+import bg from '../../dark-bg.jpg';
 
 function CreateEvent() {
   const [summary, setSummary] = useState('');
@@ -39,25 +43,11 @@ function CreateEvent() {
             description,
             start: {
               dateTime: `${start}:03-08:00`,
-              timeZone: 'America/Los_Angeles',
+              timeZone: 'Asia/Kolkata',
             },
             end: {
               dateTime: `${end}:03-08:00`,
-              timeZone: 'America/Los_Angeles',
-            },
-            recurrence: [
-              'RRULE:FREQ=DAILY;COUNT=2',
-            ],
-            attendees: [
-              { email: 'lpage@example.com' },
-              { email: 'sbrin@example.com' },
-            ],
-            reminders: {
-              useDefault: false,
-              overrides: [
-                { method: 'email', minutes: 24 * 60 },
-                { method: 'popup', minutes: 10 },
-              ],
+              timeZone: 'Asia/Kolkata',
             },
 
           };
@@ -74,34 +64,50 @@ function CreateEvent() {
         });
     });
   };
+  const paperStyle = {
+    padding: '2% 5% 2% 5%', width: '50%', margin: ' auto', boxSizing: 'border-box',
+  };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="summary">Summary</label>
-        <input type="text" id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
-        <br />
+      <Grid style={{
+        minHeight: '100vh', backgroundSize: 'cover', backgroundImage: `url(${bg})`, paddingTop: '4rem', paddingBottom: '4rem',
+      }}
+      >
+        <Paper elevation={100} style={paperStyle}>
+          <form onSubmit={handleSubmit}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Grid align="center">
+                <Avatar style={{ backgroundColor: 'green' }}><AddOutlined /></Avatar>
+                <h2>Create Event</h2>
+              </Grid>
+              <label htmlFor="summary" style={{ margin: '1%' }}>Summary</label>
+              <input type="text" style={{ padding: '2%' }} id="summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
+              <br />
 
-        <label htmlFor="description">Description</label>
-        <textarea type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <br />
+              <label htmlFor="description" style={{ margin: '1%' }}>Description</label>
+              <textarea type="text" style={{ padding: '3%' }} id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+              <br />
 
-        <label htmlFor="location">Location</label>
-        <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-        <br />
+              <label htmlFor="location" style={{ margin: '1%' }}>Location</label>
+              <input type="text" id="location" style={{ padding: '2%' }} value={location} onChange={(e) => setLocation(e.target.value)} />
+              <br />
 
-        <label htmlFor="startDateTime">Start Date Time</label>
-        <input type="datetime-local" id="startDateTime" value={start} onChange={(e) => setStart(e.target.value)} />
-        <br />
+              <label htmlFor="startDateTime" style={{ margin: '1%' }}>Start Date Time</label>
+              <input type="datetime-local" id="startDateTime" style={{ padding: '2%' }} value={start} onChange={(e) => setStart(e.target.value)} />
+              <br />
 
-        <label htmlFor="endDateTime">End Date Time</label>
-        <input type="datetime-local" id="endDateTime" value={end} onChange={(e) => setEnd(e.target.value)} />
-        <br />
-        <br />
-        <div>
-          <Button onClick={addEvent} style={{ color: 'red', backgroundColor: 'blue' }}>Add events</Button>
-        </div>
-        <br />
-      </form>
+              <label htmlFor="endDateTime" style={{ margin: '1%' }}>End Date Time</label>
+              <input type="datetime-local" id="endDateTime" style={{ padding: '2%' }} value={end} onChange={(e) => setEnd(e.target.value)} />
+              <br />
+              <br />
+              <div align="center">
+                <Button color="primary" variant="contained" onClick={addEvent}>Confirm</Button>
+              </div>
+              <br />
+            </div>
+          </form>
+        </Paper>
+      </Grid>
     </div>
   );
 }
