@@ -22,9 +22,9 @@ function Landing({ setisLoggedIn }) {
               </h1>
             </Grid>
             <div style={{ height: '25' }} />
-            <Button color="primary" variant="contained">
-              <Login setisLoggedIn={setisLoggedIn} />
-            </Button>
+
+            <Login setisLoggedIn={setisLoggedIn} />
+
             <div style={{ height: '20' }} />
             <Button>
               Let us schedule meetings
