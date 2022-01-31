@@ -1,42 +1,40 @@
 import React from 'react';
-import { Grid, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Login from '../Login';
-import bg from '../../bg.jpg';
+import bg from '../../assets/bg.jpg';
+import '../../styles/landing.css';
 
 function Landing({ setisLoggedIn }) {
   return (
-    <div>
-
-      <Grid container style={{ minHeight: '100vh', backgroundSize: 'cover', backgroundImage: `url(${bg})` }}>
-
-        <Grid container item xs={12} sm={6} alignItems="center" direction="column" justifyContent="space-between" style={{ padding: '10', height: '100vh' }}>
-
-          <div style={{
-            display: 'flex', flexDirection: 'column', maxWidth: '800', minWidth: '300', paddingTop: '25vh',
-          }}
+      <div>
+          <Grid
+            container
+            style={{
+          minHeight: '100vh',
+          backgroundSize: 'cover',
+          backgroundImage: `url(${bg})`,
+        }}
           >
-            <Grid justify content="center">
-              <h1 style={{ font: 'bold italic 52px red', textAlign: 'center' }}>
-                Fake-Calendly
-              </h1>
-            </Grid>
-            <div style={{ height: '25' }} />
-
-            <Login setisLoggedIn={setisLoggedIn} />
-
-            <div style={{ height: '20' }} />
-            <Button>
-              Let us schedule meetings
-            </Button>
-          </div>
-
-        </Grid>
-        <Grid item xs={12} sm={6} />
-
-      </Grid>
-
-    </div>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={6}
+                alignItems="center"
+                direction="column"
+                justifyContent="space-between"
+                style={{ padding: '10', height: '100vh' }}
+              >
+                  <div className="landing-container">
+                      <h1 className="landing-title">Meeting Scheduler</h1>
+                      <div className="landing-toast">Let us schedule meetings</div>
+                      <Login setisLoggedIn={setisLoggedIn} />
+                  </div>
+              </Grid>
+              <Grid item xs={12} sm={6} />
+          </Grid>
+      </div>
   );
 }
 Landing.propTypes = {

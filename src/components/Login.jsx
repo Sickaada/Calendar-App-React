@@ -2,21 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { REACT_APP_CLIENT_ID } from '../config';
-// import { refreshTokenSetup } from '../utils/refreshToken';
-
-const useStyles = makeStyles({
-  btn: {
-    width: '100%',
-  },
-});
+import '../styles/common.css';
 
 const clientID = REACT_APP_CLIENT_ID;
 
 function Login({ setisLoggedIn }) {
-  const classes = useStyles();
   const onSuccess = (response) => {
     // console.log('User is', response.profileObj);
     localStorage.setItem('user', JSON.stringify(response.profileObj));
@@ -27,26 +18,27 @@ function Login({ setisLoggedIn }) {
   };
 
   return (
-    <div>
-
-      <GoogleLogin
-        clientId={clientID}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy="single_host_origin"
-        scope="openid email profile https://www.googleapis.com/auth/calendar"
-        render={(props) => (
-          <div style={{ width: '100%' }}>
-            <Button color="primary" variant="contained" className={classes.btn} onClick={props.onClick} disabled={props.disabled}>Login</Button>
-            {' '}
-          </div>
+      <div>
+          <GoogleLogin
+            clientId={clientID}
+            buttonText="Login"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy="single_host_origin"
+            scope="openid email profile https://www.googleapis.com/auth/calendar"
+            render={(props) => (
+                <button
+                  type="button"
+                  className="login-button"
+                  onClick={props.onClick}
+                  disabled={props.disabled}
+                >
+                    Login
+                </button>
         )}
-        isSignedIn
-
-      />
-
-    </div>
+            isSignedIn
+          />
+      </div>
   );
 }
 Login.propTypes = {
