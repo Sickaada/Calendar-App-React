@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from './components/pages/Landing';
+import Landing from './components/pages/landing';
 import CreateEvent from './components/pages/CreateEvent';
 import Dashboard from './components/pages/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';

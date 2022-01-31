@@ -7,6 +7,7 @@ import '../../styles/landing.css';
 
 function Landing({ setisLoggedIn }) {
   return (
+
       <div>
           <Grid
             container
