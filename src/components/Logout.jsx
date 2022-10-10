@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
 import PropTypes from 'prop-types';
