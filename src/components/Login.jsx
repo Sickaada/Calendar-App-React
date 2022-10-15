@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
@@ -9,7 +8,6 @@ const clientID = REACT_APP_CLIENT_ID;
 
 function Login({ setisLoggedIn }) {
   const onSuccess = (response) => {
-    // console.log('User is', response.profileObj);
     localStorage.setItem('user', JSON.stringify(response.profileObj));
     setisLoggedIn(true);
   };
